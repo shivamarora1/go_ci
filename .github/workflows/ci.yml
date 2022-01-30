@@ -26,23 +26,20 @@ jobs:
     - name: Run go vet
       run: go vet ./...
 
-    - name: Install staticcheck
-      run: go install honnef.co/go/tools/cmd/staticcheck@latest
+    - name: Install and Run staticcheck
+      run: |
+          go install honnef.co/go/tools/cmd/staticcheck@latest
+          staticcheck ./...
 
-    - name: Run staticcheck
-      run: staticcheck ./...
+    - name: Install and Run golint
+      run: |
+          go install golang.org/x/lint/golint@latest
+          golint ./...
 
-    - name: Install golint
-      run: go install golang.org/x/lint/golint@latest
-
-    - name: Run golint
-      run: golint ./...
-
-    - name: Install errCheck
-      run: go install github.com/kisielk/errcheck@latest
-
-    - name: Check for unhandled error
-      run: errcheck .
+    - name: Install and Check for unhandled error
+      run: |
+          go install github.com/kisielk/errcheck@latest
+          errcheck ./...
 
     - name: Run tests
       run: go test -race -vet=off ./...
