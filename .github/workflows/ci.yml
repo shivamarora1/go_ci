@@ -40,7 +40,7 @@ jobs:
 
     - name: Check for unhandled error
       run: |
-          go install  github.com/kisielk/errcheck
+          go install github.com/kisielk/errcheck@latest
           errcheck ./..
 
     - name: Run tests
