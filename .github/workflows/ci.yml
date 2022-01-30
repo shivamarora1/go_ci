@@ -42,7 +42,7 @@ jobs:
       run: go install github.com/kisielk/errcheck@latest
 
     - name: Check for unhandled error
-      run: errcheck ./..
+      run: errcheck .
 
     - name: Run tests
       run: go test -race -vet=off ./...
