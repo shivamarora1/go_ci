@@ -38,5 +38,10 @@ jobs:
     - name: Run golint
       run: golint ./...
 
+    - name: Check for unhandled error
+      run: |
+          go install  github.com/kisielk/errcheck
+          errcheck ./..
+
     - name: Run tests
       run: go test -race -vet=off ./...
